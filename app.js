@@ -1,7 +1,9 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 let nombresAmigos = [];
-let campoTexto = document.getElementById('amigo');
-let listaAmigos = document.getElementById('listaAmigos');
+let campoTexto = elementoId('amigo');
+let listaAmigos = elementoId('listaAmigos');
+let botonSorteo = elementoId('botonSorteo');
+let botonAgregar = elementoId('botonAgregar');
 
 function agregarAmigo() {
     if (campoTexto.value == "") {
@@ -11,7 +13,7 @@ function agregarAmigo() {
         nombresAmigos.push(campoTexto.value);
         actualizarListaAmigos(campoTexto.value)
         campoTexto.value = "";
-        console.log(nombresAmigos);
+        //console.log(nombresAmigos);
     }
 }
 
@@ -28,10 +30,25 @@ function sortearAmigo() {
         alert("Ingresa amigos para sortear!");
     }
     else {
-        listaAmigos.remove();
         let amigo = Math.floor(Math.random() * nombresAmigos.length);
-        document.getElementById('resultado').innerHTML = `El amigo secreto sorteado es: ${nombresAmigos[amigo]}`
-    }
+        elementoId('resultado').innerHTML = `El amigo secreto sorteado es: ${nombresAmigos[amigo]}`;
 
+        listaAmigos.innerHTML = "";
+        document.querySelector("#botonSorteo span").innerHTML = "Reiniciar sorteo";
+        botonAgregar.disabled = true;
+        botonSorteo.onclick = reiniciarSorteo;
+    }
+}
+
+function elementoId(elemento) {
+    return document.getElementById(elemento);
+}
+
+function reiniciarSorteo() {
+    nombresAmigos = [];
+    elementoId('resultado').innerHTML = "";
+    document.querySelector("#botonSorteo span").innerHTML = "Sortear amigo";
+    botonSorteo.onclick = sortearAmigo;
+    botonAgregar.disabled = false;
 
 }
