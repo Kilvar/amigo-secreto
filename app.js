@@ -24,7 +24,7 @@ function actualizarListaAmigos(nombre) {
 }
 
 function sortearAmigo() {
-    if (listaAmigos.length == 0) {
+    if (nombresAmigos.length == 0) {
         alert("Ingresa amigos para sortear!");
     }
     else {
